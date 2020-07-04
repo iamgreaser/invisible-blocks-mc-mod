@@ -1,19 +1,24 @@
 package chenthread.gm.invisibleblocks.blocks;
 
-import chenthread.gm.invisibleblocks.InvisibleBlocksMod;
+import java.util.Random;
+
+import chenthread.gm.invisibleblocks.InvisibleBlocksModClient;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.block.BlockModelRenderer;
+import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class InvisibleBlockEntityRenderer extends BlockEntityRenderer<InvisibleBlockEntity> {
-    private static ItemStack STACK = new ItemStack(InvisibleBlocksMod.INVISIBLE_BLOCK, 1);
+    protected static Random RANDOM = new Random();
 
     public InvisibleBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
@@ -23,24 +28,13 @@ public class InvisibleBlockEntityRenderer extends BlockEntityRenderer<InvisibleB
     public void render(InvisibleBlockEntity entity, float tickDelta, MatrixStack matrices,
             VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
-        MinecraftClient client = MinecraftClient.getInstance();
-        PlayerEntity player = client.player;
+        InvisibleBlockEntityRenderer.renderAnyInvisible(entity, tickDelta, matrices, vertexConsumers, light, overlay);
+    }
 
-        // We MUST have a player.
-        if (player == null) {
-            return;
-        }
-
-        // Find out what we're wearing on our head.
-        ItemStack stack = player.getEquippedStack(EquipmentSlot.HEAD);
-
-        // It MUST be something.
-        if (stack.isEmpty()) {
-            return;
-        }
-
-        // It MUST also be IR goggles.
-        if (stack.getItem() != InvisibleBlocksMod.IR_GOGGLES) {
+    public static void renderAnyInvisible(BlockEntity entity, float tickDelta, MatrixStack matrices,
+            VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        // Make sure the blocks are actually visible
+        if (!InvisibleBlocksModClient.invisibleBlocksAreVisible()) {
             return;
         }
 
@@ -49,9 +43,29 @@ public class InvisibleBlockEntityRenderer extends BlockEntityRenderer<InvisibleB
         // MATRIX 0 PUSH 1
         matrices.push();
         try {
-            ItemRenderer renderer = client.getItemRenderer();
-            matrices.translate(0.5d, 0.5d, 0.5d);
-            renderer.renderItem(STACK, ModelTransformation.Mode.NONE, light, overlay, matrices, vertexConsumers);
+            MinecraftClient client = MinecraftClient.getInstance();
+
+            BlockPos bpos = entity.getPos();
+            World world = entity.getWorld();
+            BlockState state = entity.getCachedState();
+
+            BlockRenderManager brm = client.getBlockRenderManager();
+            BlockModelRenderer bmr = brm.getModelRenderer();
+            BakedModel model = brm.getModel(state);
+
+            //matrices.translate(0.5d, 0.5d, 0.5d);
+            bmr.render(
+                world,
+                model,
+                state,
+                bpos,
+                matrices,
+                vertexConsumers.getBuffer(RenderLayer.getTranslucent()),
+                false,
+                RANDOM,
+                state.getRenderingSeed(bpos),
+                0);
+            //renderer.renderItem(null, STACK, ModelTransformation.Mode.NONE, false, matrices, vertexConsumers, null, light, overlay);
 
         } finally {
             // MATRIX 1 POP 0

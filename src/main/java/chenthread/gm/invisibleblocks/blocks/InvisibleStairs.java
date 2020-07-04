@@ -1,13 +1,14 @@
 package chenthread.gm.invisibleblocks.blocks;
 
+import chenthread.gm.invisibleblocks.InvisibleBlocksMod;
 import chenthread.gm.invisibleblocks.InvisibleBlocksModClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -15,10 +16,9 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class InvisibleBlock extends Block implements BlockEntityProvider {
-
-    public InvisibleBlock(Settings settings) {
-        super(settings);
+public class InvisibleStairs extends StairsBlock implements BlockEntityProvider {
+    public InvisibleStairs(Settings settings) {
+        super(InvisibleBlocksMod.INVISIBLE_BLOCK.getDefaultState(), settings);
     }
 
     @Environment(EnvType.CLIENT)
@@ -62,7 +62,7 @@ public class InvisibleBlock extends Block implements BlockEntityProvider {
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return new InvisibleBlockEntity();
+        return new InvisibleStairsEntity();
     }
 
     @Override

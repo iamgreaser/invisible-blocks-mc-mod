@@ -1,5 +1,6 @@
 {
-    "block.invisibleblocks.invisible_block": "Invisible block",
+    "block.invisibleblocks.invisible_block": "Invisible Block",
+    "block.invisibleblocks.invisible_stairs": "Invisible Stairs",
     "itemGroup.invisibleblocks.general": "Invisible Blocks",
-    "item.invisibleblocks.ir_goggles": "IR goggles"
+    "item.invisibleblocks.ir_goggles": "IR Goggles"
 }
