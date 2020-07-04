@@ -1,5 +1,6 @@
 package chenthread.gm.invisibleblocks.blocks;
 
+import chenthread.gm.invisibleblocks.InvisibleBlocksMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -47,7 +48,9 @@ public class InvisibleBlock extends Block implements BlockEntityProvider {
             return false;
         }
 
-        // TODO: Actually check if this is a stack of IR goggles
+        if (stack.getItem() != InvisibleBlocksMod.IR_GOGGLES) {
+            return false;
+        }
 
         return true;
     }

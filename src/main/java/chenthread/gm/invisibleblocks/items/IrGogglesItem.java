@@ -1,15 +1,10 @@
 package chenthread.gm.invisibleblocks.items;
 
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.Wearable;
+import net.minecraft.item.ArmorItem;
 
-public class IrGogglesItem extends Item implements Wearable {
+public class IrGogglesItem extends ArmorItem {
     public IrGogglesItem(Settings settings) {
-        super(settings);
-    }
-
-    public EquipmentSlot getSlotType() {
-        return EquipmentSlot.HEAD;
+        super(IrGogglesArmorMaterial.STANDARD, EquipmentSlot.HEAD, settings);
     }
 }

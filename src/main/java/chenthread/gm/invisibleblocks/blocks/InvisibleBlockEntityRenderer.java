@@ -42,6 +42,11 @@ public class InvisibleBlockEntityRenderer extends BlockEntityRenderer<InvisibleB
                 return;
             }
 
+            // It MUST also be IR goggles.
+            if (stack.getItem() != InvisibleBlocksMod.IR_GOGGLES) {
+                return;
+            }
+
             // OK, we can render things!
             ItemRenderer renderer = client.getItemRenderer();
             matrices.translate(0.5d, 0.5d, 0.5d);
