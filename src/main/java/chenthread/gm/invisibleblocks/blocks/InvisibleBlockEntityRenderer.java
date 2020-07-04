@@ -23,31 +23,32 @@ public class InvisibleBlockEntityRenderer extends BlockEntityRenderer<InvisibleB
     public void render(InvisibleBlockEntity entity, float tickDelta, MatrixStack matrices,
             VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
+        MinecraftClient client = MinecraftClient.getInstance();
+        PlayerEntity player = client.player;
+
+        // We MUST have a player.
+        if (player == null) {
+            return;
+        }
+
+        // Find out what we're wearing on our head.
+        ItemStack stack = player.getEquippedStack(EquipmentSlot.HEAD);
+
+        // It MUST be something.
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        // It MUST also be IR goggles.
+        if (stack.getItem() != InvisibleBlocksMod.IR_GOGGLES) {
+            return;
+        }
+
+        // OK, we can render things!
+
         // MATRIX 0 PUSH 1
         matrices.push();
         try {
-            MinecraftClient client = MinecraftClient.getInstance();
-            PlayerEntity player = client.player;
-
-            // We MUST have a player.
-            if (player == null) {
-                return;
-            }
-
-            // Find out what we're wearing on our head.
-            ItemStack stack = player.getEquippedStack(EquipmentSlot.HEAD);
-
-            // It MUST be something.
-            if (stack.isEmpty()) {
-                return;
-            }
-
-            // It MUST also be IR goggles.
-            if (stack.getItem() != InvisibleBlocksMod.IR_GOGGLES) {
-                return;
-            }
-
-            // OK, we can render things!
             ItemRenderer renderer = client.getItemRenderer();
             matrices.translate(0.5d, 0.5d, 0.5d);
             renderer.renderItem(STACK, ModelTransformation.Mode.NONE, light, overlay, matrices, vertexConsumers);

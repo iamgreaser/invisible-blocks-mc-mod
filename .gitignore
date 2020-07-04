@@ -5,6 +5,11 @@ build/
 out/
 classes/
 
+# vim
+
+.sw?
+.*.sw?
+
 # eclipse
 
 *.launch
