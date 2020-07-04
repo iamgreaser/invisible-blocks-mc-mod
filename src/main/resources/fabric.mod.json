@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "invisibleblocks",
+  "version": "${version}",
+
+  "name": "Invisible Blocks",
+  "description": "Blocks that are invisible, except when you are wearing special glasses.",
+  "authors": [
+    "GreaseMonkey"
+  ],
+  "contact": {
+    "homepage": "- TODO -",
+    "sources": "- TODO -"
+  },
+
+  "license": "Zlib",
+  "icon": "assets/invisibleblocks/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "chenthread.gm.invisibleblocks.InvisibleBlocksMod"
+    ],
+    "client": [
+      "chenthread.gm.invisibleblocks.InvisibleBlocksModClient"
+    ]
+  },
+  "mixins": [
+    "invisibleblocks.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+  }
+}
