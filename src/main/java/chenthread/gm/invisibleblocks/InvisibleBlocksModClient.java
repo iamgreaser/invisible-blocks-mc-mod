@@ -1,6 +1,7 @@
 package chenthread.gm.invisibleblocks;
 
 import chenthread.gm.invisibleblocks.blocks.InvisibleBlockEntityRenderer;
+import chenthread.gm.invisibleblocks.blocks.InvisibleSlabEntityRenderer;
 //import chenthread.gm.invisibleblocks.blocks.InvisibleBlockEntityRenderer;
 import chenthread.gm.invisibleblocks.blocks.InvisibleStairsEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,9 +16,11 @@ import net.minecraft.item.ItemStack;
 public class InvisibleBlocksModClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(InvisibleBlocksMod.INVISIBLE_BLOCK, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(InvisibleBlocksMod.INVISIBLE_STAIRS, RenderLayer.getTranslucent());
         BlockEntityRendererRegistry.INSTANCE.register(InvisibleBlocksMod.INVISIBLE_BLOCK_ENTITY, InvisibleBlockEntityRenderer::new);
+        BlockRenderLayerMap.INSTANCE.putBlock(InvisibleBlocksMod.INVISIBLE_STAIRS, RenderLayer.getTranslucent());
         BlockEntityRendererRegistry.INSTANCE.register(InvisibleBlocksMod.INVISIBLE_STAIRS_ENTITY, InvisibleStairsEntityRenderer::new);
+        BlockRenderLayerMap.INSTANCE.putBlock(InvisibleBlocksMod.INVISIBLE_SLAB, RenderLayer.getTranslucent());
+        BlockEntityRendererRegistry.INSTANCE.register(InvisibleBlocksMod.INVISIBLE_SLAB_ENTITY, InvisibleSlabEntityRenderer::new);
     }
 
     public static boolean invisibleBlocksAreVisible() {

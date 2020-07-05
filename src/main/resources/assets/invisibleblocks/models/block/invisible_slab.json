@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "top": "invisibleblocks:block/invisible_block",
+        "side": "invisibleblocks:block/invisible_block",
+        "bottom": "invisibleblocks:block/invisible_block"
+    }
+}

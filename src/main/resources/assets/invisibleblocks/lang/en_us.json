@@ -1,6 +1,7 @@
 {
     "block.invisibleblocks.invisible_block": "Invisible Block",
     "block.invisibleblocks.invisible_stairs": "Invisible Stairs",
+    "block.invisibleblocks.invisible_slab": "Invisible Slab",
     "itemGroup.invisibleblocks.general": "Invisible Blocks",
     "item.invisibleblocks.ir_goggles": "IR Goggles"
 }

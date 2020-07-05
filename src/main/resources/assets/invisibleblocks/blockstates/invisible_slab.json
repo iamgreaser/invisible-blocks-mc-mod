@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "invisibleblocks:block/invisible_slab" },
+        "type=top": { "model": "invisibleblocks:block/invisible_slab_top" },
+        "type=double": { "model": "invisibleblocks:block/invisible_block" }
+    }
+}
