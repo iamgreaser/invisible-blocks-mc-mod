@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "GrG",
+      "rOr",
+      "GrG"
+    ],
+    "key": {
+      "G": { "item": "minecraft:glass" },
+      "O": { "item": "minecraft:obsidian" },
+      "r": { "item": "minecraft:redstone" }
+    },
+    "result": {
+      "item": "invisibleblocks:invisible_block",
+      "count": 1
+    }
+  }
+

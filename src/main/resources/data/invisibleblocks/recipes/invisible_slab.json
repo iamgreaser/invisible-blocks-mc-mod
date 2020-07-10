@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###"
+    ],
+    "key": {
+        "#": { "item": "invisibleblocks:invisible_block" }
+    },
+    "result": {
+        "item": "invisibleblocks:invisible_slab",
+        "count": 6
+    }
+}

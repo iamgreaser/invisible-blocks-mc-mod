@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "X X"
+    ],
+    "key": {
+        "X": { "item": "invisibleblocks:invisible_block" }
+    },
+    "result": {
+        "item": "invisibleblocks:ir_goggles"
+    }
+}

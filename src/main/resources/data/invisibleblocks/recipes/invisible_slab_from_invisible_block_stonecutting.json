@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+      "item": "invisibleblocks:invisible_block"
+    },
+    "result": "invisibleblocks:invisible_slab",
+    "count": 2
+  }

@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class InvisibleBlocksMod implements ModInitializer {
-	public static final AbstractBlock.Settings INVISIBLE_SETTINGS = FabricBlockSettings.of(Material.STONE).nonOpaque();
+	public static final AbstractBlock.Settings INVISIBLE_SETTINGS = FabricBlockSettings.of(Material.STONE).requiresTool().strength(50.0f, 1200.0f).nonOpaque();
 	public static final InvisibleBlock INVISIBLE_BLOCK = new InvisibleBlock(INVISIBLE_SETTINGS);
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 		new Identifier("invisibleblocks", "general"))
